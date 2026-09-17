@@ -12,7 +12,7 @@ indexer on Base mainnet that tests how far the same approach scales.
 | Solidity / smart contracts (junior–mid) | [`erc4626-vault`](https://github.com/hareeshkashyap849/erc4626-vault) | `forge test` → 46 passed, 0 failed, 12 fork tests skipped without an RPC endpoint. The invariant suite was checked for teeth: reversing one rounding direction in `convertToAssets` turns three tests red. | [dApp](https://hareeshkashyap849.github.io/erc4626-vault/) |
 | Web3 backend / indexer | [`erc4626-vault-dapp`](https://github.com/hareeshkashyap849/erc4626-vault-dapp) | Open the committed `data/vault.sqlite` with `node:sqlite`: it starts at the deployment block 46,919,124 on chain 84532 and holds the one real `Deposit`, at block 46,919,498. No runtime dependencies, no `npm install`. | not hosted |
 | Web3 full-stack dApp | [`vault-console`](https://github.com/hareeshkashyap849/vault-console) | 259 tests across 10 files, green with nothing else running. The published `/history` page labels its figures as a snapshot rather than live, because a static host runs no process. | [console](https://hareeshkashyap849.github.io/vault-console/) |
-| Chain data at scale | [`base-swap-indexer`](https://github.com/hareeshkashyap849/base-swap-indexer) | Query the committed database: 96,980 swaps over a 200,000-block Base mainnet window. The 37-minute backfill and the RPC ceilings it ran into are recorded in the README. | not hosted |
+| Chain data at scale | [`base-swap-indexer`](https://github.com/hareeshkashyap849/base-swap-indexer) | Query the committed database: 96,980 swaps over a 200,000-block Base mainnet window. The recorded 37-minute backfill and the RPC ceilings it ran into are in the README. | not hosted |
 
 ## Public and verifiable
 
@@ -22,13 +22,15 @@ indexer on Base mainnet that tests how far the same approach scales.
 - **Contract:** [`0x7941438ee07bea4469ccd4bec583e9fb24037f35`](https://sepolia.basescan.org/address/0x7941438ee07bea4469ccd4bec583e9fb24037f35)
   on Base Sepolia (84532), deployed at block 46,919,124. Testnet only: no real funds,
   not audited.
-- **Index measurements, read out of the committed databases:** 96,980 swaps over a
-  200,000-block window (Base mainnet, blocks 51,192,413 to 51,392,411) indexed from chain
-  in 37 minutes; the vault index begins at its own deployment block and holds the real
-  deposit.
+- **Index measurements, read out of the committed databases:** 96,980 swaps over the
+  200,000-block window 51,192,412 to 51,392,411 on Base mainnet, in one indexed range
+  (the repository records the backfill at 37 minutes); the vault index begins at its own
+  deployment block and holds the real deposit.
 - **Tests:** 46 Foundry tests, plus 12 fork tests against the real mainnet USDC contract
-  and 259 front-end tests. Slither reports 0 results across 18 contracts; Medusa runs
-  9 properties for ~1M calls with 0 failures.
+  and 259 front-end tests. Slither runs 102 detectors over 18 contracts and reports
+  nothing in the project's own code: the 32 findings a full run reports are all in the
+  vendored OpenZeppelin library. Medusa runs the same 9 properties and reports 0
+  failures.
 
 ## What is not there yet
 
