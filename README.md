@@ -9,16 +9,16 @@ indexer on Base mainnet that tests how far the same approach scales.
 
 | Target role | Repository | The one thing to verify | Live |
 |---|---|---|---|
-| Solidity / smart contracts (junior–mid) | [`erc4626-vault`](https://github.com/hareeshkashyap849/erc4626-vault) | `forge test` → 46 passed, 0 failed, 12 fork tests skipped without an RPC endpoint. The invariant suite was checked for teeth: reversing one rounding direction in `convertToAssets` turns three tests red. | [dApp](https://hareeshkashyap849.github.io/erc4626-vault/) |
-| Web3 backend / indexer | [`erc4626-vault-dapp`](https://github.com/hareeshkashyap849/erc4626-vault-dapp) | Open the committed `data/vault.sqlite` with `node:sqlite`: it starts at block 46,919,124 on chain 84532 — one block *before* the vault's own deployment block, 46,919,125, which is allowed and says so in the README — and holds the one real `Deposit`, at block 46,919,498. No runtime dependencies, no `npm install`. | not hosted |
-| Web3 full-stack dApp | [`vault-console`](https://github.com/hareeshkashyap849/vault-console) | 259 tests across 10 files, green with nothing else running. The published `/history` page labels its figures as a snapshot rather than live, because a static host runs no process. | [console](https://hareeshkashyap849.github.io/vault-console/) |
-| Chain data at scale | [`base-swap-indexer`](https://github.com/hareeshkashyap849/base-swap-indexer) | Run the backfill, don't open a database: that repository commits its code and its recorded measurement — 96,980 swaps over a 200,000-block Base mainnet window, reproduced with `npm run index -- --blocks 200000` — and no database file, because `data/` is ignored. The RPC ceilings it ran into are in that README, which also says plainly why the backfill's duration is not recorded anywhere. | not hosted |
+| Solidity / smart contracts (junior–mid) | [`erc4626-vault`](https://github.com/wuzilin-web3/erc4626-vault) | `forge test` → 46 passed, 0 failed, 12 fork tests skipped without an RPC endpoint. The invariant suite was checked for teeth: reversing one rounding direction in `convertToAssets` turns three tests red. | [dApp](https://wuzilin-web3.github.io/erc4626-vault/) |
+| Web3 backend / indexer | [`erc4626-vault-dapp`](https://github.com/wuzilin-web3/erc4626-vault-dapp) | Open the committed `data/vault.sqlite` with `node:sqlite`: it starts at block 46,919,124 on chain 84532 — one block *before* the vault's own deployment block, 46,919,125, which is allowed and says so in the README — and holds the one real `Deposit`, at block 46,919,498. No runtime dependencies, no `npm install`. | not hosted |
+| Web3 full-stack dApp | [`vault-console`](https://github.com/wuzilin-web3/vault-console) | 259 tests across 10 files, green with nothing else running. The published `/history` page labels its figures as a snapshot rather than live, because a static host runs no process. | [console](https://wuzilin-web3.github.io/vault-console/) |
+| Chain data at scale | [`base-swap-indexer`](https://github.com/wuzilin-web3/base-swap-indexer) | Run the backfill, don't open a database: that repository commits its code and its recorded measurement — 96,980 swaps over a 200,000-block Base mainnet window, reproduced with `npm run index -- --blocks 200000` — and no database file, because `data/` is ignored. The RPC ceilings it ran into are in that README, which also says plainly why the backfill's duration is not recorded anywhere. | not hosted |
 
 ## Public and verifiable
 
 - **Two front ends, both published.** The vault's no-build vanilla-JS dApp at
-  <https://hareeshkashyap849.github.io/erc4626-vault/>, and the Next.js console at
-  <https://hareeshkashyap849.github.io/vault-console/>.
+  <https://wuzilin-web3.github.io/erc4626-vault/>, and the Next.js console at
+  <https://wuzilin-web3.github.io/vault-console/>.
 - **Contract:** [`0x7941438ee07bea4469ccd4bec583e9fb24037f35`](https://sepolia.basescan.org/address/0x7941438ee07bea4469ccd4bec583e9fb24037f35)
   on Base Sepolia (84532), deployed at block 46,919,125 — the block containing the deployment
   transaction — and funded with 21 USDC of test assets. Testnet only: no real funds,
