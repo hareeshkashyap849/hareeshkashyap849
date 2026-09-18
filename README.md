@@ -5,6 +5,8 @@ them. The four repositories here are one thread: an ERC-4626 vault on Base Sepol
 indexer and query API behind it, two front ends over it, and a separate Uniswap V3 swap
 indexer on Base mainnet that tests how far the same approach scales.
 
+**Contact:** wuzilin1996.10@gmail.com
+
 ## Where to look
 
 | Target role | Repository | The one thing to verify | Live |
